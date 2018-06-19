@@ -10,31 +10,21 @@
 var q1 = {
     question: "What Band Sang a Song called 'Robert De Niro's Waiting'?",
     answers: ["The Go-Go's", "The Eurythmics","Bananarama","The Bangles"]
-     
 
 };
 var q2 = {
     question: "What Band Sang created the Song, 'The Love Shack'?",
-    answer0: "The B-52's",
-    answer1: "Prince",
-    answer2: "Madonna",
-    answer3: "Mister Mister"
+    answers: ["The B-52's", "Prince", "Madonna", "Mister Mister"]
 
 };
 var q3 = {
     question: "Who is the singer of the song 'Super Freak'?",
-    answer0: "George Michael",
-    answer1: "A-ha",
-    answer2: "The Pet Shop Boys",
-    answer3: "Rick James"
+    answers: ["George Michael", "A-ha", "The Pet Shop Boys", "Rick James"]
 
 };
 var q4 = {
     question: "What song sampled 'Van Halen's Jaime's Cryin'?",
-    answer0: "Sabotage",
-    answer1: "Wild Thing",
-    answer2: "Jump",
-    answer3: "Black Coffee in Bed"
+    answers: ["Sabotage", "Wild Thing", "Jump", "Black Coffee in Bed"]
 
 };
 
@@ -44,6 +34,7 @@ var losses = 0;
 var unanswered = 0;
 var isStarted = false;
 var canClick = false;
+var isSelected = false;
 
 
 $(document).ready(function () {
@@ -59,14 +50,23 @@ var reset = function () {
     isStarted = true;
     canClick = false;
 }
-function createQuestions() {
-$(".leadQuestion").text(q1.question);
-$("#guess1").text(q1.answers[0]).addClass("big");
-$("#guess2").text(q1.answers[1]).addClass("big");
-$("#guess3").text(q1.answers[2]).addClass("big");
-$("#guess4").text(q1.answers[3]).addClass("big");
-}
-createQuestions();
+// function createQuestions1() {
+//     $(".leadQuestion").text(q1.question);
+//     $("#guess1").text(q1.answers[0]).addClass("big");
+//     $("#guess2").text(q1.answers[1]).addClass("big");
+//     $("#guess3").text(q1.answers[2]).addClass("big");
+//     $("#guess4").text(q1.answers[3]).addClass("big");
+//     };
+//     createQuestions1();
+// function createQuestions2() {
+// $(".leadQuestion").text(q2.question);
+// $("#guess1").text(q2.answers[0]).addClass("big");
+// $("#guess2").text(q2.answers[1]).addClass("big");
+// $("#guess3").text(q2.answers[2]).addClass("big");
+// $("#guess4").text(q2.answers[3]).addClass("big");
+// };
+// createQuestions2();
+
 canClick = true;
 if(canClick === true) {
     selectAnswer();
@@ -81,6 +81,7 @@ function selectAnswer() {
         $(".guess").hide();
         losses++;
         canClick = false;
+        isSelected = true;
         setTimeout(reset, 5000);
     });
     $("li#guess2").on("click", function () {
@@ -89,6 +90,7 @@ function selectAnswer() {
         $(this).replaceWith("<h2>Nope, You Lose! The answer is " + q1.answers[2] + "</h2>");
         losses++;
         canClick = false;
+        isSelected = true;
         setTimeout(reset, 5000);
     });
     $("li#guess3").on("click", function () {
@@ -98,6 +100,7 @@ function selectAnswer() {
 
         wins++;
         canClick = false;
+        isSelected = true;
         setTimeout(reset, 5000);
     });
     $("li#guess4").on("click", function () {
@@ -106,9 +109,12 @@ function selectAnswer() {
         $(this).replaceWith("<h2>Nope, You Lose! The answer is " + q1.answers[2] + "</h2>");
         losses++;
         canClick = false;
+        isSelected = true;
         setTimeout(reset, 5000);
     });
-    
+    if (isSelected === false) {
+        unanswered++;
+    }
 }
 
 selectAnswer();
