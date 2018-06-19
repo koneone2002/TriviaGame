@@ -1,0 +1,31 @@
+.big {
+    font-size: 2.5em;
+    line-height: 90px;
+    
+    
+}
+li {
+    width: 50%;
+    padding-left: 25px;
+}
+.leadQuestion {
+    font-size: 3em;
+    font-weight: bolder;
+    color: darkorchid;
+    background: white;
+}
+ul {
+    list-style-type: none;
+}
+li:hover {
+    color: lightblue;
+    background: #555;
+}
+h2 {
+    font-size: 2.5em;
+    font-weight: bolder;
+    color: white;
+    background: red;
+    width: 50%;
+    padding: 25px;
+}

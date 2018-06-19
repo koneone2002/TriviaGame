@@ -1,0 +1,116 @@
+// create start button 
+// start button has a start state
+// on click start state becomes true
+// start page disappears
+// new div shows
+// timer starts
+
+// hide the giphy's
+// declare the questions as objects
+var q1 = {
+    question: "What Band Sang a Song called 'Robert De Niro's Waiting'?",
+    answers: ["The Go-Go's", "The Eurythmics","Bananarama","The Bangles"]
+     
+
+};
+var q2 = {
+    question: "What Band Sang created the Song, 'The Love Shack'?",
+    answer0: "The B-52's",
+    answer1: "Prince",
+    answer2: "Madonna",
+    answer3: "Mister Mister"
+
+};
+var q3 = {
+    question: "Who is the singer of the song 'Super Freak'?",
+    answer0: "George Michael",
+    answer1: "A-ha",
+    answer2: "The Pet Shop Boys",
+    answer3: "Rick James"
+
+};
+var q4 = {
+    question: "What song sampled 'Van Halen's Jaime's Cryin'?",
+    answer0: "Sabotage",
+    answer1: "Wild Thing",
+    answer2: "Jump",
+    answer3: "Black Coffee in Bed"
+
+};
+
+
+var wins = 0;
+var losses = 0;
+var unanswered = 0;
+var isStarted = false;
+var canClick = false;
+
+
+$(document).ready(function () {
+    $(".image").hide();
+    
+});
+
+var reset = function () {
+    $(".image").hide();
+    wins = "";
+    losses = "";
+    unanswered = "";
+    isStarted = true;
+    canClick = false;
+}
+function createQuestions() {
+$(".leadQuestion").text(q1.question);
+$("#guess1").text(q1.answers[0]).addClass("big");
+$("#guess2").text(q1.answers[1]).addClass("big");
+$("#guess3").text(q1.answers[2]).addClass("big");
+$("#guess4").text(q1.answers[3]).addClass("big");
+}
+createQuestions();
+canClick = true;
+if(canClick === true) {
+    selectAnswer();
+
+} else { 
+    setTimeout(reset, 2000);
+}
+function selectAnswer() {
+    $("li#guess1").on("click", function () {
+        $("#img1").show();
+        $(this).replaceWith("<h2>Nope, You Lose! The answer is " + q1.answers[2] + "</h2>");
+        $(".guess").hide();
+        losses++;
+        canClick = false;
+        setTimeout(reset, 5000);
+    });
+    $("li#guess2").on("click", function () {
+        $("#img2").show();
+        $(".guess").hide();
+        $(this).replaceWith("<h2>Nope, You Lose! The answer is " + q1.answers[2] + "</h2>");
+        losses++;
+        canClick = false;
+        setTimeout(reset, 5000);
+    });
+    $("li#guess3").on("click", function () {
+        $("#img3").show();
+        $(".guess").hide();
+        $(this).replaceWith("<h2 class='winner'>You're right! You Win!!!</h2>");
+
+        wins++;
+        canClick = false;
+        setTimeout(reset, 5000);
+    });
+    $("li#guess4").on("click", function () {
+        $("#img4").show();
+        $(".guess").hide();
+        $(this).replaceWith("<h2>Nope, You Lose! The answer is " + q1.answers[2] + "</h2>");
+        losses++;
+        canClick = false;
+        setTimeout(reset, 5000);
+    });
+    
+}
+
+selectAnswer();
+
+// reset();
