@@ -38,3 +38,16 @@ div#test {
 background-color: white;
 color: white;
 }
+#answerStatus {
+    width: 50%;
+    height: 50%;
+    
+    color: red;
+   
+    font-size: 40px;
+    
+    padding: 100px 50px 100px 50px;
+    margin: 0 auto;
+
+
+}
