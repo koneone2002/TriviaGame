@@ -55,3 +55,15 @@ color: white;
     float: left;
     z-index: 2;
 }
+
+#timer {
+    font-family: 'Holtwood One SC', serif;
+
+}
+.counts {
+    margin-left: 40px;
+    color: orange;
+    background-color: red;
+    padding: 20px;
+    z-index: -1;
+}
