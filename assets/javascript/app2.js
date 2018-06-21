@@ -11,11 +11,11 @@ var questions = [
     ["What Band Sang a Song called 'Robert De Niro's Waiting'?", "The Go-Go's", "The Eurythmics", "Bananarama", "The Bangles", "C", "Bananarama"],
     ["What Band Sang created the Song, 'The Love Shack'?", "The B-52's", "Prince", "Madonna", "Mister Mister", "A", "The B-52's"],
     ["Who is the singer of the song 'Super Freak'?", "George Michael", "A-ha", "The Pet Shop Boys", "Rick James", "D", "Rick James"],
-    ["What song sampled 'Van Halen's Jaime's Cryin'?", "Sabotage", "Wild Thing", "Jump", "Black Coffee in Bed", "B", "Wild Thing"],
-    ["Who is the lead singer of The Motels?", "Martha Davis", "Martha Stewart", "Martha Reed", "Martha Walsh", "A", "Martha Davis"],
-    ["What Missing Person's Album contained 'Walking in L.A'?", "Late Nights Early Days", "Sprint Session M", "Color in Your Life", "Riot in English", "B", "Sprint Session M"],
-    ["What country were 'Men at Work' from?", "England", "The United States", "Australia", "Denmark", "C", "Australia"],
-    ["What was Huey Lewis' Bands name?", "The Report", "The Friendship Band", "The Vandrells", "The News", "D", "The News"]
+    // ["What song sampled 'Van Halen's Jaime's Cryin'?", "Sabotage", "Wild Thing", "Jump", "Black Coffee in Bed", "B", "Wild Thing"],
+    // ["Who is the lead singer of The Motels?", "Martha Davis", "Martha Stewart", "Martha Reed", "Martha Walsh", "A", "Martha Davis"],
+    // ["What Missing Person's Album contained 'Walking in L.A'?", "Late Nights Early Days", "Sprint Session M", "Color in Your Life", "Riot in English", "B", "Sprint Session M"],
+    // ["What country were 'Men at Work' from?", "England", "The United States", "Australia", "Denmark", "C", "Australia"],
+    // ["What was Huey Lewis' Bands name?", "The Report", "The Friendship Band", "The Vandrells", "The News", "D", "The News"]
     // [ "Who sang a song called 'Alone'?", "Madonna", "Lionel Richie", "Heart", "Billy Joel", "C", "Heart"],
     // [ "What record was on the Number 1 list the longest in 1982?", "Asia", "Freeze Frame", "Beauty and the Beat", "For Those About to Rock We Salute You", "A", "Asia"]
 
@@ -25,37 +25,52 @@ var questions = [
 function countDown() {
     var element = $("#timer");
     element.html("<p>You have </p><br><span class='counts'>" + counter + "</span> <br> seconds to answer</p>");
-    
-    
+    counter--;
+
+
     if (counter < 1) {
         //counter = 10;
         $("#containerTest").hide();
         $("#answerStatus").show().text("The correct answer was " + questions[pos][6]);
-
+        
         unanswered++
         pos++
         clearInterval(timer);
         setTimeout(renderQuestion, 2000);
+    } else if (pos === questions.length -1) {
+        
+        $("#containerTest").empty();
+        clearTimeout(checkAnswer);
+        clearTimeout(renderQuestion);
+        //stops the timer
+        clearInterval(timer);
+        $("#answerStatus").show().text("The correct answer was " + questions[pos][6]);
+        
+        return $("#answerStatus").show().text("You answered " + correct + " questions correctly, you had " + incorrect + " incorrect,  and  " + unanswered + " unanswered questions.");
+        
 
-        // show correct answer
-        // advance to next question
-        // add to unanswered questions
     };
-    if (pos === questions.length - 1 && counter < 1) {
-        $("#containerTest").hide();
-        pos ++;
-        return $("#answerStatus").show().text("You answered " + correct + "correctly. You had " + incorrect + "and there were " + unanswered + "questions.");
-        counter --;
-    }; 
-            
+} 
+
+    // show correct answer
+    // advance to next question
+    // add to unanswered questions
+
+    // if (pos === questions.length - 1 && counter < 1) {
+    // $("#containerTest").hide();
+
+    // return $("#answerStatus").show().text("You answered " + correct + "correctly. You had " + incorrect + "and there were " + unanswered + "questions.");
+
+    // };
+
     // for (var i = 0; i < choices.length; i++) {
     //     if (pos === questions.length - 1) {
     //         alert("game over");
     //     };
-    counter--;
+    // counter--;
 
     // }
-}    
+// }
 // create the questions
 function renderQuestion() {
     counter = 4;
@@ -112,7 +127,10 @@ function checkAnswer() {
 
         for (var i = 0; i < choices.length; i++) {
             if (pos === questions.length - 1) {
-                alert("game over");
+                
+                $("#containerTest").hide();
+                clearTimeout(checkAnswer);
+                return $("#answerStatus").show().text("You answered " + correct + " questions correctly, you had " + incorrect + " incorrect,  and  " + unanswered + " unanswered questions.");
             }
             else if (choices[i] === questions[pos][5]) {
                 console.log(guessed);
@@ -173,6 +191,7 @@ $(document).ready(function () {
 
 
 });
+
 
 
 
