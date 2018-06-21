@@ -2,22 +2,22 @@
 
 // Global variables
 
-var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, chD, correct = 0, incorrect = 0, unanswered = 0, counter = 10, timer, canClick = false;
+var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, chD, correct = 0, incorrect = 0, unanswered = 0, counter = 4, timer;
 
 var guessed = [];
-var hasAnswered = false;
+
 
 var questions = [
-    [ "What Band Sang a Song called 'Robert De Niro's Waiting'?", "The Go-Go's", "The Eurythmics", "Bananarama", "The Bangles", "C", "Bananarama"  ],
+    [ "What Band Sang a Song called 'Robert De Niro's Waiting'?", "The Go-Go's", "The Eurythmics", "Bananarama", "The Bangles", "C", "Bananarama" ],
     [ "What Band Sang created the Song, 'The Love Shack'?", "The B-52's", "Prince", "Madonna", "Mister Mister", "A", "The B-52's" ],
     [ "Who is the singer of the song 'Super Freak'?", "George Michael", "A-ha", "The Pet Shop Boys", "Rick James", "D", "Rick James" ],
     [ "What song sampled 'Van Halen's Jaime's Cryin'?", "Sabotage", "Wild Thing", "Jump", "Black Coffee in Bed", "B", "Wild Thing" ],
     [ "Who is the lead singer of The Motels?", "Martha Davis", "Martha Stewart", "Martha Reed", "Martha Walsh", "A", "Martha Davis" ],
-    [ "What Missing Person's Album contained 'Walking in L.A'?", "Late Nights Early Days", "Sprint Session M", "Color in Your Life", "Riot in English", "B", "Sprint Session M" ],
-    [ "What country were 'Men at Work' from?", "England", "The United States", "Australia", "Denmark", "C", "Australia"],
-    [ "What was Huey Lewis' Bands name?", "The Report", "The Friendship Band", "The Vandrells", "The News", "D", "The News"],
-    [ "Who sang a song called 'Alone'?", "Madonna", "Lionel Richie", "Heart", "Billy Joel", "C", "Heart"],
-    [ "What record was on the Number 1 list the longest in 1982?", "Asia", "Freeze Frame", "Beauty and the Beat", "For Those About to Rock We Salute You", "A", "Asia"]
+    [ "What Missing Person's Album contained 'Walking in L.A'?", "Late Nights Early Days", "Sprint Session M", "Color in Your Life", "Riot in English", "B", "Sprint Session M"  ],
+    [ "What country were 'Men at Work' from?", "England", "The United States", "Australia", "Denmark", "C", "Australia" ],
+    [ "What was Huey Lewis' Bands name?", "The Report", "The Friendship Band", "The Vandrells", "The News", "D", "The News" ]
+    // [ "Who sang a song called 'Alone'?", "Madonna", "Lionel Richie", "Heart", "Billy Joel", "C", "Heart"],
+    // [ "What record was on the Number 1 list the longest in 1982?", "Asia", "Freeze Frame", "Beauty and the Beat", "For Those About to Rock We Salute You", "A", "Asia"]
 
 ];
 // create a timer
@@ -28,13 +28,12 @@ function countDown() {
     if (counter < 1) {
         //counter = 10;
         $("#containerTest").hide();
-        $("#answerStatus").show().text("The correct answer was " + questions[pos][6]);
-        canClick = false;
+         $("#answerStatus").show().text("The correct answer was " + questions[pos][6]);
+        
         unanswered++
         pos++
-        // $("#answerStatus").text("The correct answer was " + questions[pos][6]);
         clearInterval(timer);
-        setTimeout(renderQuestion, 5000);
+        setTimeout(renderQuestion, 2000);
         
         // show correct answer
         // advance to next question
@@ -45,18 +44,30 @@ function countDown() {
 }
 // create the questions
 function renderQuestion() {
+    counter = 4;
+    $("#gameInfo").hide();
+    $("#startMe").hide();
     $("#answerStatus").hide();
     $("#containerTest").show();
-    canClick = true;
-    counter = 10;
+    //canClick = true;
+    
     timer = setInterval(countDown, 1000);
     test = $("#test");
+    for (var i = 0; i > questions.length; i++){
+        if (questions[pos][i] >= questions.length) {
+            
+            // $("#answerStatus").hide();
+            // var endgame = $("#gameInfo").show().text("Correct answers :" + correct + "Incorrect answers " + incorrect + "Unanswered " + unanswered);
+            // return endgame;
+            pos++;
+    
 
-    if (pos >= questions.length) {
+    }
+    
         // show total correct, total incorrect and total unanswered in HTML
         // show start over button
         // if user clicks startover then
-        pos = 0;
+        //pos = 0;
         
         //renderQuestion();
         // without reloading the game
@@ -80,7 +91,7 @@ function checkAnswer() {
 
     $(".choices").on("click", function () {
         var choices = $(this).attr("value");
-        hasAnswered = true;
+        //hasAnswered = true;
         
         
         for (var i = 0; i < choices.length; i++) {
@@ -89,13 +100,25 @@ function checkAnswer() {
                 choice = choices[i].value;
                 correct++;
                 $("#containerTest").hide();
+                $(".anotherDiv").show();
                 $("#answerStatus").show();
                 $("#answerStatus").text("You guessed correctly!");
+                // var imgDiv = $("<div class='anotherDiv'>");
+                // var imgURL = questions[pos][7];
+                // var image = $("<img>").attr("src", imgURL);
+                // imgDiv.append(image);
+            
+                
             }
             else {
                 $("#containerTest").hide();
                 $("#answerStatus").show();
+                $(".anotherDiv").show();
                 $("#answerStatus").text("Nope not that one, the correct answer was " + questions[pos][6]);
+                // var imgDiv = $("<div class='anotherDiv'>");
+                // var imgURL = questions[pos][7];
+                // var image = $("<img>").attr("src", imgURL);
+                // imgDiv.append(image);
                 incorrect++
             }
         }
@@ -103,7 +126,7 @@ function checkAnswer() {
         pos++;
         clearInterval(timer);
         //setTimeout(checkAnswer, 3000);
-        setTimeout(renderQuestion, 5000);
+        setTimeout(renderQuestion, 2000);
         
     });
 // if (hasAnswered === false) {
@@ -119,9 +142,15 @@ function checkAnswer() {
 
 }
 $(document).ready(function () {
-    renderQuestion();
+    $("#startMe").show();
+    $("button#startIt").on("click", function(){
+        renderQuestion();
+        checkAnswer();
+    });
+    
+    
    
-    checkAnswer();
+    
 
 });
 
