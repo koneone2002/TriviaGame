@@ -1,49 +1,54 @@
-.big {
-    font-size: 2.5em;
-    line-height: 90px;
-    
-    
-}
-li {
-    width: 50%;
-    padding-left: 25px;
-}
-.leadQuestion {
-    font-size: 3em;
+
+.display-4 {
+    font-family: 'Slackey';
+    font-size: 35px;
     font-weight: bolder;
-    color: darkorchid;
-    background: white;
+    text-shadow: 2px 2px 8px pink;
+    text-align: center;
+    padding-top: 30px;
+
+
 }
-ul {
-    list-style-type: none;
-}
-li:hover {
-    color: lightblue;
-    background: #555;
-}
+
+
+
 h2 {
-    font-size: 2.5em;
-    font-weight: bolder;
-    color: white;
-    background: red;
-    width: 50%;
-    padding: 25px;
+    width: 100%;
+    background-color: lightblue;
+    text-align: center;
+    color: black;
+    font-family: 'Slackey';
+    text-shadow: 2px 2px 8px rgb(3, 62, 98);
+    font-size: 25px;
+    /* margin: 20px; */
+     padding: 5px 20px 15px 20px;   
 }
 
 div#test {
-    border: 1px solid black;
+    border-bottom: 1px solid black;
     padding: 10px, 40px, 40px, 40px;
 }
-.new {
-background-color: white;
-color: white;
+div#test h3{
+    margin: 120px 0px 60px 0px;
+    font-family: 'Slackey';
+    font-size: 30px;
+    text-align: center;
+    text-shadow: 2px 2px 8px cyan;
+
+    color: black;
+
 }
+/* .new {
+background-color: white;
+color: white; */
+/* } */
 #answerStatus {
     width: 50%;
     height: 50%;
-    
-    color: red;
-   
+    font-family: 'Slackey';
+    color: magenta;
+    text-shadow: 2px 2px 8px black;
+    text-align: center;
     font-size: 40px;
     
     padding: 100px 50px 100px 50px;
@@ -57,13 +62,64 @@ color: white;
 }
 
 #timer {
+   padding-left: 30px;
+    width: 100%;
+    position: absolute;
+    margin: 0 auto;
+    font-size: 15px;
     font-family: 'Holtwood One SC', serif;
 
 }
 .counts {
     margin-left: 40px;
-    color: orange;
-    background-color: red;
+    font-size: 30px;
+    color: rgb(239, 205, 35);
+    background-color: rgb(0, 255, 60);
+    text-shadow: 2px 2px 8px black;
     padding: 20px;
     z-index: -1;
 }
+/* #img1 {
+    size: = 200px;
+    float: left;
+    position: absolute;
+    top: 200px;
+    left: 150px;
+    z-index: -5;
+    border: 3px solid black;
+} */
+.choices {
+    text-align: center;
+    font-family: 'Slackey';
+    font-size: 20px;
+    width: 50%;
+    margin: 0 auto;
+    padding: 30px;
+
+}
+.choices:hover {
+    color: cyan;
+    background: #555;
+}
+.startContainer {
+    background-image: url(../images/80images.jpeg);
+    background-repeat: repeat-x;
+}
+
+button#trouble, #anotherStart {
+    font-family: 'Slackey';
+    font-size: 15px;
+    margin: 20px 50px 20px 50px;
+    text-align: center;
+    padding: 15px 20px;
+    background-color: magenta;
+    color: white;
+}
+button#trouble:hover{
+    background-color: darkmagenta;
+
+}
+#anotherStart:hover {
+    background-color: darkmagenta;
+}
+

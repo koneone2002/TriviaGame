@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Trivia Game</title>
+    <title>80's Music Trivia Game</title>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Faster+One|Holtwood+One+SC|Kreon|Slackey" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/reset.css">
@@ -12,71 +13,75 @@
 
 
 </head>
+
 <body>
-    <!-- This is the start page which will disappear once the start button is clicked -->
-        <div class="startContainer">
-                <div class="container text-center">
-                  <h1 class="display-4 ">Trivia Game!</h1>
-                  
-
-            
+    <!-- This the header -->
+    <div class="startContainer">
+        <div class="container text-center">
+            <h1 class="display-4 ">Music Trivia Game!</h1>
         </div>
+
         <div class="containerQuesions">
-                <div id="timer"></div>
-                <!-- This is the question container which will hold the various questions and display the timer  -->
-                <div class="question container">
-                        <h2 class="leadQuestion"></h2>
-                        </div>
-                      </div>
-                      <!-- This is for the timer -->
-                </div>
-
-                <div id="startMe">
-                    <h2>Ready to Play?
-                    </h2>
-                    <button id="startIt">Start</button>
-
-                </div>
-                <div id=gameInfo>
-
-                </div>
-        
-                
-        
-            <!-- This is the first question -->
-        
-                <div id="containerTest" 
-                   
-                     >
-        
-                      <h3 id="test_status"></h3>
-                      <div id="test"></div>
-                      <div id="testa" class="choices" value="A"></div>
-                      <div id="testb" class="choices"
-                      value="B"></div>
-                      <div id="testc" class="choices" value="C"></div>
-                      <div id="testd" class="choices" value="D"></div>
-                </div>
-
-
-
-                <div id="answerStatus">
-                        
-                </div>
-                <div class="anotherDiv"></div>
-                
-        </div>
-       
-        <!-- <div class="frontPage">
-            <div>
-                <button id="start">Start</button>
+            <div id="timer"></div>
+            <!-- This is the question container which will hold the various questions and display the timer  -->
+            <!-- These are the questions -->
+            <div class="question container">
+                <h2 class="leadQuestion"></h2>
             </div>
+        </div>
+        <!-- This is for the timer -->
+    </div>
 
-        </div> -->
+    <div id="startMe">
+        <h2>Ready to Play?
+        </h2>
+        <div id="startIt">
+            <button id="trouble">Start</button>
+
+        </div>
 
 
-    
+    </div>
+    <div id=gameInfo>
 
-<script src="assets/javascript/app2.js"></script> 
+    </div>
+
+
+
+    <!-- This is the first question -->
+
+    <div id="containerTest">
+
+        <h3 id="test_status"></h3>
+        <div id="test"></div>
+        <div id="testa" class="choices" value="A"></div>
+        <div id="testb" class="choices" value="B"></div>
+        <div id="testc" class="choices" value="C"></div>
+        <div id="testd" class="choices" value="D"></div>
+    </div>
+
+
+
+    <div id="answerStatus">
+
+
+    </div>
+    <div class="anotherDiv"></div>
+    <button id="anotherStart">Start Again</button>
+
+    </div>
+
+    <div id="img1">
+        <div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <script src="assets/javascript/app2.js"></script>
 </body>
-</html>  
+
+</html>
