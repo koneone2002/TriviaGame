@@ -64,7 +64,7 @@ function countDown() {
         clearTimeout(checkAnswer);
         clearTimeout(renderQuestion);
         //stops the timer
-        //clearInterval(timer);
+        clearInterval(timer);
         console.log("line 67" + clearInterval);
         $("#answerStatus").show().text("The correct answer was " + questions[pos][6]);
         $("#img1").show().attr("src", imgCorrect);
