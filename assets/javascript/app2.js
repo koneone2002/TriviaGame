@@ -9,18 +9,23 @@ var guessed = [];
 
 var questions = [
     ["What Band Sang a Song called 'Robert De Niro's Waiting'?", "The Go-Go's", "The Eurythmics", "Bananarama", "The Bangles", "C", "Bananarama", "https://media.giphy.com/media/lb1T46PtSt8Gs/giphy.gif"],
+
     ["What Band Sang the Song, 'The Love Shack'?", "The B-52's", "Prince", "Madonna", "Mister Mister", "A", "The B-52's", "https://media.giphy.com/media/xXeMyPdYlROX6/giphy.gif"],
+
     ["Who is the singer of the song 'Super Freak'?", "George Michael", "A-ha", "The Pet Shop Boys", "Rick James", "D", "Rick James", "https://media.giphy.com/media/dFqP7vPEzKoM0/giphy.gif"],
+
     ["Who is the lead singer of The Go-Go's?", "Martha Davis", "Belinda Carlisle", "Martha Reed", "Martha Walsh", "B", "Belinda Carlisle", "https://media.giphy.com/media/Y418mApQbIKGc/giphy.gif"],
+
     ["What Missing Person's Album contained 'Walking in L.A'?", "Late Nights Early Days", "Sprint Session M", "Color in Your Life", "Riot in English", "B", "Sprint Session M", "https://media.giphy.com/media/6TBPWMybOlZLi/giphy.gif"],
+
     ["What was Huey Lewis' bands name?", "The Report", "The Friendship Band", "The Vandrells", "The News", "D", "The News", "https://media.giphy.com/media/15WDwH91gcCWs/giphy.gif"],
+
     ["Who sang the song, 'Alone'?", "Madonna", "Lionel Richie", "Heart", "Billy Joel", "C", "Heart", "https://media.giphy.com/media/QbRXrHi6QBge4/giphy.gif"]
 ];
 
 // create a timer
 
 function countDown() {
-    
     var element = $("#timer");
     element.html("<br><br><span class='counts'>" + counter + "</span> <br> seconds to answer</p>");
     counter--;
@@ -36,14 +41,14 @@ function countDown() {
         setTimeout(function(){
           unanswered++
           pos++
-          console.log("line 58" + clearInterval);
+          //console.log("line 58" + clearInterval);
           renderQuestion()
-        }, 1000);
+        }, 1000)
     }
     if (pos === 6 && counter < 1) {
         $("#containerTest").hide();
         clearInterval(timer);
-        
+        console.log("line 67"+ imgCorrect);
         $("#answerStatus").show().text("The correct answer was " + questions[pos][6]);
         $("#img1").show().attr("src", imgCorrect);
         $("#timer").hide();
@@ -94,14 +99,16 @@ $(document).ready(function () {
         renderQuestion();
         
     });
+    // function for restart button
     $("#anotherStart").on("click", function() {
-        pos = correct = incorrect = unanswered = 0
+        pos = correct = incorrect = unanswered = 0;
         $("#timer").show();
         renderQuestion();
 
     });
-    // function for restart button
+    
     $(".choices").on("click", function () {
+        console.log("pooossss", pos)
         var choices = $(this).attr("value");
 
         for (var i = 0; i < choices.length; i++) {
@@ -116,18 +123,17 @@ $(document).ready(function () {
                 clearInterval(timer);
             }
             else if (choices[i] === questions[pos][5]) {
-                console.log(guessed);
-                choice = choices[i].value;
-                correct++;
+                
                 $("#containerTest").hide();
                 $(".anotherDiv").show();
                 $("#answerStatus").show();
                 $("#img1").show().attr("src", imgCorrect);
                 $("#answerStatus").text("You guessed correctly!");
-
+                clearInterval(timer);
                 setTimeout(function() {
+                    correct++;
                     pos++;
-                    clearInterval(timer);
+                    
                     renderQuestion()
                 }, 2000);
                 }
@@ -137,11 +143,11 @@ $(document).ready(function () {
                     $(".anotherDiv").show();
                     $("#img1").show().attr("src", imgCorrect);
                     $("#answerStatus").text("Nope not that one, the correct answer was " + questions[pos][6]);
-
-                    setTimeout(function(){
+                    clearInterval(timer);
+                    setTimeout(function() {
                         incorrect++;
                         pos++;
-                        clearInterval(timer);
+                        
                         renderQuestion()
                     }, 2000);
                 }
