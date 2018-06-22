@@ -1,11 +1,8 @@
-
-
 // Global variables
 
 var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, chD, correct = 0, incorrect = 0, unanswered = 0, counter = 4, timer, imgCorrect;
 
 var guessed = [];
-
 
 var questions = [
     ["What Band Sang a Song called 'Robert De Niro's Waiting'?", "The Go-Go's", "The Eurythmics", "Bananarama", "The Bangles", "C", "Bananarama", "https://media.giphy.com/media/lb1T46PtSt8Gs/giphy.gif"],
@@ -17,14 +14,14 @@ var questions = [
     ["Who sang the song, 'Alone'?", "Madonna", "Lionel Richie", "Heart", "Billy Joel", "C", "Heart", "https://media.giphy.com/media/QbRXrHi6QBge4/giphy.gif"]
 ];
 
-// create a timer
+
+// trying to display image... currently not working
+
 
 function countDown() {
-    
     var element = $("#timer");
     element.html("<br><br><span class='counts'>" + counter + "</span> <br> seconds to answer</p>");
     counter--;
-
 
     if (pos !== 6 && counter < 1) {
         $("#anotherStart").hide();
@@ -34,27 +31,28 @@ function countDown() {
         $("#answerStatus").show().text("The correct answer was " + questions[pos][6]);
         clearInterval(timer);
         setTimeout(function(){
-          unanswered++
-          pos++
-          console.log("line 58" + clearInterval);
-          renderQuestion()
-        }, 1000);
+            unanswered++
+            pos++
+            console.log("line 58" + clearInterval);
+            renderQuestion()
+        }, 1000)
     }
     if (pos === 6 && counter < 1) {
         $("#containerTest").hide();
+        //stops the timer
         clearInterval(timer);
-        
+        console.log("line 67" + imgCorrect);
         $("#answerStatus").show().text("The correct answer was " + questions[pos][6]);
         $("#img1").show().attr("src", imgCorrect);
         $("#timer").hide();
         $("#anotherStart").show();
         $("#answerStatus").show().text("You answered " + correct + " questions correctly, you had " + incorrect + " incorrect,  and  " + unanswered + " unanswered questions.");
     };
-
 }
 
-        
-
+// show correct answer
+// advance to next question
+// add to unanswered questions
 
 // create the questions
 function renderQuestion() {
@@ -69,9 +67,7 @@ function renderQuestion() {
     
     // create a timer
     timer = setInterval(countDown, 1000);
-    
-    
-    
+
     question = questions[pos][0];
     chA = questions[pos][1];
     chB = questions[pos][2];
@@ -85,23 +81,21 @@ function renderQuestion() {
 
 }
 
-
 $(document).ready(function () {
     $("#anotherStart").hide();
     $("#answerStatus").hide();
     $("#startMe").show();
     $("button#trouble").on("click", function () {
         renderQuestion();
-        
     });
-    $("#anotherStart").on("click", function() {
+    // function for restart button at end of questions
+    $("#anotherStart").on("click", function(){
         pos = correct = incorrect = unanswered = 0
-        $("#timer").show();
-        renderQuestion();
-
+        $("#timer").show()
+        renderQuestion();  
     });
-    // function for restart button
     $(".choices").on("click", function () {
+        console.log("pooosss", pos)
         var choices = $(this).attr("value");
 
         for (var i = 0; i < choices.length; i++) {
@@ -112,11 +106,10 @@ $(document).ready(function () {
                 $("#timer").hide();
                 $("#anotherStart").show();
                 $("#answerStatus").show().text("You answered " + correct + " questions correctly, you had " + incorrect + " incorrect,  and  " + unanswered + " unanswered questions.");
-                pos = 0;
-                clearInterval(timer);
+                pos = 0
+                clearInterval(timer)
             }
             else if (choices[i] === questions[pos][5]) {
-                console.log(guessed);
                 choice = choices[i].value;
                 correct++;
                 $("#containerTest").hide();
@@ -125,46 +118,27 @@ $(document).ready(function () {
                 $("#img1").show().attr("src", imgCorrect);
                 $("#answerStatus").text("You guessed correctly!");
 
-                setTimeout(function() {
+                setTimeout(function(){
                     pos++;
                     clearInterval(timer);
                     renderQuestion()
-                }, 2000);
-                }
-                else {
-                    $("#containerTest").hide();
-                    $("#answerStatus").show();
-                    $(".anotherDiv").show();
-                    $("#img1").show().attr("src", imgCorrect);
-                    $("#answerStatus").text("Nope not that one, the correct answer was " + questions[pos][6]);
-
-                    setTimeout(function(){
-                        incorrect++;
-                        pos++;
-                        clearInterval(timer);
-                        renderQuestion()
-                    }, 2000);
-                }
+                }, 2000)
             }
-        });
+            else {
+                $("#containerTest").hide();
+                $("#answerStatus").show();
+                $(".anotherDiv").show();
+                $("#img1").show().attr("src", imgCorrect);
+                $("#answerStatus").text("Nope not that one, the correct answer was " + questions[pos][6]);
+
+                setTimeout(function(){
                     
-
-
-
-
-
+                    incorrect++
+                    pos++;
+                    clearInterval(timer);
+                    renderQuestion()
+                }, 2000)
+            }
+        }        
+    });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
