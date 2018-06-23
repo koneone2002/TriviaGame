@@ -2,7 +2,7 @@
 
 // Global variables
 
-var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, chD, correct = 0, incorrect = 0, unanswered = 0, counter = 4, timer, imgCorrect;
+var pos = 0, test, test_status, question, choice, choices, chA, chB, chC, chD, correct = 0, incorrect = 0, unanswered = 0, counter = 8, timer, imgCorrect;
 
 var guessed = [];
 
@@ -43,7 +43,7 @@ function countDown() {
           pos++
           //console.log("line 58" + clearInterval);
           renderQuestion()
-        }, 1000)
+        }, 3000)
     }
     if (pos === 6 && counter < 1) {
         $("#containerTest").hide();
@@ -64,7 +64,7 @@ function countDown() {
 // create the questions
 function renderQuestion() {
     imgCorrect = questions[pos][7];
-    counter = 4;
+    counter = 8;
     $("#anotherStart").hide();
     $("#img1").hide();
     $("#gameInfo").hide();
@@ -135,7 +135,7 @@ $(document).ready(function () {
                     pos++;
                     
                     renderQuestion()
-                }, 2000);
+                }, 4000);
                 }
                 else {
                     $("#containerTest").hide();
@@ -149,7 +149,7 @@ $(document).ready(function () {
                         pos++;
                         
                         renderQuestion()
-                    }, 2000);
+                    }, 4000);
                 }
             }
         });
